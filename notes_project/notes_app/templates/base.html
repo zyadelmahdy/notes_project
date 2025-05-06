@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="style.css" />
+    <title>{% block title %}
+        Brain Farts
+        {% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+    <div id="content">{% block content %}
+        <H1>Welcome to Brain Farts app</H1>
+        <a href="{% url 'notes_list' %}" class="btn btn_primary">Notes List</a>
+        {% endblock %}</div>
+</body>
+</html>
