@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <header class="header">
+    {% block title %}
+    <h1 id="title" class="text-center">Edit Note</h1>
+    {% endblock %}
+  </header>
+  <div class="form-wrap">
+    <form id="survey-form" method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="{{ form.title.id_for_label }}">Title</label>
+              <input
+                type="{{ form.title.field.widget.input_type }}"
+                name="{{ form.title.html_name }}"
+                id="{{ form.title.id_for_label }}"
+                placeholder="{{ form.title.field.widget.attrs.placeholder|default:'Enter the title' }}"
+                class="form-control {{ form.title.field.widget.attrs.class|default:'' }}"
+                {%
+                if
+                form.title.field.required
+                %}required{%
+                endif
+                %}
+                value="{{ form.title.value|default:'' }}"
+              />
+              {% if form.title.errors %}
+              <div class="error">{{ form.title.errors }}</div>
+              {% endif %} {% if form.title.help_text %}
+              <small class="form-text text-muted"
+                >{{ form.title.help_text }}</small
+              >
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="{{ form.content.id_for_label }}">Content</label>
+              <textarea
+                name="{{ form.content.html_name }}"
+                id="{{ form.content.id_for_label }}"
+                placeholder="{{ form.content.field.widget.attrs.placeholder|default:'Enter the content' }}"
+                class="form-control {{ form.content.field.widget.attrs.class|default:'' }}"
+                {% if form.content.field.required %}required{% endif %}
+                rows="4"
+              >{{ form.content.value|default:'' }}</textarea>
+              {% if form.content.errors %}
+              <div class="error">{{ form.content.errors }}</div>
+              {% endif %} 
+              {% if form.content.help_text %}
+              <small class="form-text text-muted">{{ form.content.help_text }}</small>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-4">
+          <button type="submit" class="btn-dark btn btn-mod btn-circle btn-medium">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

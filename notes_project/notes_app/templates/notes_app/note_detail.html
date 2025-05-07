@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block title %}
+<h2>{{ note.id }} {{ note.title }}</h2>
+{% endblock %} {% block content %}
+<h1 class="text-center">Note Details</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="{{ note.title.id_for_label }}">Title</label>
+      
+      <h3>{{ note.title }}</h3>
+      <p>{{ note.content }}</p>
+      <p>Created at: {{ note.created_at }}</p>
+      <p>Updated at: {{ note.updated_at }}</p>
+      <a
+        href="{% url 'note_edit' note.id %}"
+        class="btn-dark btn btn-mod btn-circle btn-medium"
+        >Edit</a
+      >
+      <a
+        href="{% url 'note_delete' note.id %}"
+        class="btn-dark btn btn-mod btn-circle btn-medium"
+        >Delete</a
+      >
+      
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

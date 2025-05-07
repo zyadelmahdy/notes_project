@@ -1,16 +1,27 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block title %} {% endblock %} {% block content %}
 
-{% block title %}
-    <h2>My notes</h2>
-{% endblock %}
-
-{% block content %}
-    <ul>
-        {% for note in notes %}
-            <li>
-                <a href="{% url 'notes_app:note_detail' note.id %}">{{ note.title }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-
+<table class="table ms-2 me-2">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Content</th>
+      <th scope="col">Date Created</th>
+      <th scope="col">Date Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for note in notes %}
+    <tr>
+      <th scope="row">{{ note.id }}</th>
+      <td>
+        <a href="{% url 'note_detail' note.id %}" class="link-dark">{{ note.title }}</a>
+      </td>
+      <td>{{ note.content }}</td>
+      <td>{{ note.created_at }}</td>
+      <td>{{ note.updated_at }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
